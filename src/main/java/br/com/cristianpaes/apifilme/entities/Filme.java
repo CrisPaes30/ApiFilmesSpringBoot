@@ -2,13 +2,13 @@ package br.com.cristianpaes.apifilme.entities;
 
 public class Filme {
 
-    private String id;
+    private Integer id;
     private String nome;
     private String diretor;
     private int ano;
     private int nota;
 
-    public Filme(String id, String nome, String diretor, int ano, int nota) {
+    public Filme(Integer id, String nome, String diretor, int ano, int nota) {
         this.id = id;
         this.nome = nome;
         this.diretor = diretor;
@@ -16,11 +16,11 @@ public class Filme {
         this.nota = nota;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
