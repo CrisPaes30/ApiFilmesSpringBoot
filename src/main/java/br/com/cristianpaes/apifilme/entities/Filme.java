@@ -5,10 +5,10 @@ public class Filme {
     private Integer id;
     private String nome;
     private String diretor;
-    private int ano;
-    private int nota;
+    private Integer ano;
+    private Integer nota;
 
-    public Filme(Integer id, String nome, String diretor, int ano, int nota) {
+    public Filme(Integer id, String nome, String diretor, Integer ano, Integer nota) {
         this.id = id;
         this.nome = nome;
         this.diretor = diretor;
@@ -40,19 +40,19 @@ public class Filme {
         this.diretor = diretor;
     }
 
-    public int getAno() {
+    public Integer getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(Integer ano) {
         this.ano = ano;
     }
 
-    public int getNota() {
+    public Integer getNota() {
         return nota;
     }
 
-    public void setNota(int nota) {
+    public void setNota(Integer nota) {
         this.nota = nota;
     }
 }

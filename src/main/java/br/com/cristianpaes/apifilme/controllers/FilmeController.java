@@ -1,13 +1,14 @@
 package br.com.cristianpaes.apifilme.controllers;
 
 import br.com.cristianpaes.apifilme.entities.Filme;
+import br.com.cristianpaes.apifilme.services.FilmeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/filmes")
@@ -15,46 +16,39 @@ public class FilmeController {
 
     private final List<Filme> filmes;
 
+    @Autowired
+    private FilmeService filmeService;
+
     public FilmeController(List<Filme> filmes) {
         this.filmes = new ArrayList<>();
     }
 
     @GetMapping
     public List<Filme>findAll(@RequestParam(required = false) String filme){
-        if(filme != null){
-           return filmes.stream().filter(flm -> flm.getNome().contains(filme))
-                   .collect(Collectors.toList());
-        }
-        return filmes;
+       return filmeService.findAll(filme);
     }
 
     @GetMapping("/{id}")
     public Filme findById(@PathVariable("id") Integer id){
-            return this.filmes.stream().filter(flm -> flm.getId().equals(id))
-                    .findFirst()
-                    .orElse(null);
+            return filmeService.findById(id);
 
     }
 
     @PostMapping
     public ResponseEntity<Integer>add(@RequestBody Filme filme){
-        if(filme.getId()==null){
-            filme.setId(filmes.size()+1);
-        }
-        filmes.add(filme);
+        Integer id = filmeService.add(filme);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity update(@RequestBody Filme filme){
-        filmes.stream().filter(flm -> flm.getId().equals(filme.getId()))
-                .forEach(flm -> flm.setNome(filme.getNome()));
+        filmeService.update(filme);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete (@PathVariable("id") Integer id){
-        filmes.removeIf(flm -> flm.getId().equals(id));
+        filmeService.delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
