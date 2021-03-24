@@ -49,11 +49,13 @@ public class FilmeService {
     }
 
 
-    public List<Filme> findAllExiste( Filme filmes){
-        if(filmes.getNome().equalsIgnoreCase(filmes.getNome())){
-            throw new NoCreatedExceptions();
+    public List<Filme> findAllExiste(Filme newFilme){
+        for (Filme filme : filmeRespository.findAll()) {
+            if (filme.getNome().equalsIgnoreCase(newFilme.getNome())){
+                throw new NoCreatedExceptions();
+            }
         }
         return filmeRespository.findAll();
     }
-
 }
+
