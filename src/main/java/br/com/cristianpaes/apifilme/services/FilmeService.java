@@ -28,7 +28,7 @@ public class FilmeService {
 
     }
 
-    public Integer add(final Filme filme){
+    public Integer add(Filme filme){
         if(filme.getId()==null) {
             filme.setId(filmeRespository.count() + 1);
         }
@@ -46,6 +46,14 @@ public class FilmeService {
     public void delete (final Integer id){
         filmeRespository.delete(id);
 
+    }
+
+
+    public List<Filme> findAllExiste( Filme filmes){
+        if(filmes.getNome().equalsIgnoreCase(filmes.getNome())){
+            throw new NoCreatedExceptions();
+        }
+        return filmeRespository.findAll();
     }
 
 }

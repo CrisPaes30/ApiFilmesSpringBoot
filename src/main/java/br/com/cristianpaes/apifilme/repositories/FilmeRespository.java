@@ -3,7 +3,6 @@ package br.com.cristianpaes.apifilme.repositories;
 
 import br.com.cristianpaes.apifilme.entities.Filme;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +20,8 @@ public class FilmeRespository {
         return filmes;
     }
 
-    public List<Filme> findAll(final String filme) {
+    public List<Filme> findAll( String filme) {
+
         return filmes.stream().filter(flm -> flm.getNome().contains(filme))
                 .collect(Collectors.toList());
     }
@@ -48,10 +48,11 @@ public class FilmeRespository {
 
     }
 
-
     public void delete (Integer id){
         filmes.removeIf(flm -> flm.getId().equals(id));
 
     }
+
+
 
 }
