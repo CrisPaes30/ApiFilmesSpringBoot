@@ -1,8 +1,12 @@
 package br.com.cristianpaes.apifilme.entities;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 public class Filme {
 
+    @UniqueElements
     private Integer id;
+
     private String nome;
     private String diretor;
     private Integer ano;

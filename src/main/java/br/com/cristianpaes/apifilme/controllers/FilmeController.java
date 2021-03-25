@@ -36,11 +36,12 @@ public class FilmeController {
 
     @PostMapping
     public ResponseEntity<Integer>add(@RequestBody Filme filme){
-        Integer id = filmeService.add(filme);
-        if(id != null) {
-            List<Filme> nome = filmeService.findAllExiste(filme);
-        }
-        return new ResponseEntity(HttpStatus.CREATED);
+            filmeService.findAllExiste(filme);
+            filmeService.add(filme);
+            filmeService.notas(filme);
+
+            return new ResponseEntity(HttpStatus.CREATED);
+
     }
 
 
